@@ -1,0 +1,17 @@
+# Arquivos de configuração
+cypress.json
+cypress.env.json
+
+# Relatórios
+cypress/report/
+
+# Arquivos gerados pelo Cypress
+cypress/videos/
+cypress/screenshots/
+cypress/fixtures/
+
+# Dependências
+/node_modules/
+
+# Arquivos de log
+*.log

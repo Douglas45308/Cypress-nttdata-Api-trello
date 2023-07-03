@@ -1,0 +1,16 @@
+{
+  "name": "api-trello-nttdata",
+  "version": "1.0.0",
+  "description": "Teste de Api",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cypress open"
+  },
+  "author": "Douglas Souza",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^12.16.0",
+    "cypress-plugin-api": "^2.11.1",
+    "mochawesome": "^7.1.3"
+  }
+}

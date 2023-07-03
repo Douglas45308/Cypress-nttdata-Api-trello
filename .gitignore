@@ -15,3 +15,5 @@ cypress/fixtures/
 
 # Arquivos de log
 *.log
+
+#credencias 

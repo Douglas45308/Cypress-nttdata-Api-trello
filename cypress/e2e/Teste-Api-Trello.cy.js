@@ -1,19 +1,20 @@
 describe('Testes Automatizados Api Trello', () => {
 
-    const apiKey = 'ATTA716fa4d158439af4bf942ac77f871e7fcf4289a4d8e2548e52776a45d9d81f13A60291B7';
-    const apiToken = '5004433386400af25cff42a899de721b_API_TOKEN';
-    const boardName = 'Cadastrar Board'
+
+    const apiKey = '5004433386400af25cff42a899de721b';
+    const apiToken = 'ATTA716fa4d158439af4bf942ac77f871e7fcf4289a4d8e2548e52776a45d9d81f13A60291B7';
+    const nomeBoard = 'Souza'
+    const url = 'https://api.trello.com/1/boards/?name='
 
     it.only('[POST] Cadastrar um board', () => {
         cy.request({
             method: 'POST',
-        url: 'https://api.trello.com/1/boards/?name=Douglas&key=5004433386400af25cff42a899de721b&token=ATTA716fa4d158439af4bf942ac77f871e7fcf4289a4d8e2548e52776a45d9d81f13A60291B7'
+            url: `${url}${nomeBoard}&key=${apiKey}&token=${apiToken}`
             //headers: { 'Accept': 'aplication/json' },
-
         }).then((response) => {
             expect(response.status).to.be.equal(200)
             const listIdFromResponse = response.body.id;
-            cy.log('ID da lista de cartões:', listIdFromResponse);
+            cy.log('ID board:', listIdFromResponse);
 
         })
     });
@@ -37,7 +38,7 @@ describe('Testes Automatizados Api Trello', () => {
             url: 'https://api.trello.com/1/cards/NLX7ynzQ?key=5004433386400af25cff42a899de721b&token=ATTA716fa4d158439af4bf942ac77f871e7fcf4289a4d8e2548e52776a45d9d81f13A60291B7',
             //headers: { 'Accept-Language': 'en-us', },
         });
-        
+
     });
 
     it('[DELETE] Excluir board', () => {
@@ -46,7 +47,7 @@ describe('Testes Automatizados Api Trello', () => {
             url: 'https://api.trello.com/1/boards/Mnyjctbn?key=5004433386400af25cff42a899de721b&token=ATTA716fa4d158439af4bf942ac77f871e7fcf4289a4d8e2548e52776a45d9d81f13A60291B7',
             headers: { 'Accept-Language': 'en-us', },
         });
-        
+
     });
 })
 

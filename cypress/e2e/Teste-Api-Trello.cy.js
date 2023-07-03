@@ -5,8 +5,9 @@ describe('Testes Automatizados Api Trello', () => {
     const apiToken = 'ATTA716fa4d158439af4bf942ac77f871e7fcf4289a4d8e2548e52776a45d9d81f13A60291B7';
     const nomeBoard = 'Souza'
     const url = 'https://api.trello.com/1/boards/?name='
+    
 
-    it.only('[POST] Cadastrar um board', () => {
+    it('[POST] Cadastrar um board', () => {
         cy.request({
             method: 'POST',
             url: `${url}${nomeBoard}&key=${apiKey}&token=${apiToken}`
@@ -19,12 +20,12 @@ describe('Testes Automatizados Api Trello', () => {
         })
     });
 
-    it('[POST] Cadastrar um card', () => {
+    it.only('[POST] Cadastrar um card', () => {
         cy.request({
             method: 'POST',
-            url: 'https://api.trello.com/1/cards?idList=64a3086dfb5efaf2ac66eb27&key=5004433386400af25cff42a899de721b&token=ATTA716fa4d158439af4bf942ac77f871e7fcf4289a4d8e2548e52776a45d9d81f13A60291B7',
+            url: `https://api.trello.com/1/cards?idList=64a3086dfb5efaf2ac66eb27&key=${apiKey}&token=${apiToken}`,
             body: {
-                name: 'TREINAMENTO DE API COM CYPRESS 40'
+                name: 'homem formiga'
             }
 
         }).then((response) => {
@@ -32,12 +33,14 @@ describe('Testes Automatizados Api Trello', () => {
         })
     });
 
-    it('[DELETE]Excluir card', () => {
+    it('[DELETE] Excluir card', () => {
         cy.request({
             method: 'DELETE',
             url: 'https://api.trello.com/1/cards/NLX7ynzQ?key=5004433386400af25cff42a899de721b&token=ATTA716fa4d158439af4bf942ac77f871e7fcf4289a4d8e2548e52776a45d9d81f13A60291B7',
             //headers: { 'Accept-Language': 'en-us', },
-        });
+        }).then((response) => {
+            expect(response.status).to.be.equal(200)
+        })
 
     });
 
@@ -46,7 +49,9 @@ describe('Testes Automatizados Api Trello', () => {
             method: 'DELETE',
             url: 'https://api.trello.com/1/boards/Mnyjctbn?key=5004433386400af25cff42a899de721b&token=ATTA716fa4d158439af4bf942ac77f871e7fcf4289a4d8e2548e52776a45d9d81f13A60291B7',
             headers: { 'Accept-Language': 'en-us', },
-        });
+        }).then((response) => {
+            expect(response.status).to.be.equal(200)
+        })
 
     });
 })

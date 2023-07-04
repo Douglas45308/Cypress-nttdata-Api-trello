@@ -1,18 +1,17 @@
+import Authorization from '../../cypress.env.example.json'
+import Api_url from '../../env.json'
+
 describe('Testes Automatizados Api Trello', () => {
-    const apiKey = '5004433386400af25cff42a899de721b';
-    const apiToken = 'ATTA716fa4d158439af4bf942ac77f871e7fcf4289a4d8e2548e52776a45d9d81f13A60291B7';
-    var nomeBoard = 'Asserções' 
+    var nomeBoard = 'A' 
     var nomeCard = 'Teste-variavel'
-    const url = 'https://api.trello.com' 
     var id_List = '64a3086dfb5efaf2ac66eb27'
     var id_ExcluirCard = 'WJqQIYcu'
     var id_ExcluirBoard = 'Bn3zufzs'
     
-
     it.only('[POST] Criar board', () => {
         cy.api({
             method: 'POST',
-            url: `${url}/1/boards/?name=${nomeBoard}&key=${apiKey}&token=${apiToken}`
+            url: `${Api_url.baseUrl}/1/boards/?name=${nomeBoard}&key=${Authorization.ACESS_API_KEY}&token=${Authorization.ACESS_TOKEN}`,
             
         }).then((response) => {
             expect(response.status).to.be.equal(200)
@@ -30,7 +29,7 @@ describe('Testes Automatizados Api Trello', () => {
         
         cy.api({
             method: 'POST',    
-            url: `${url}/1/cards?idList=${id_List}&key=${apiKey}&token=${apiToken}`,
+            url: `${Api_url.baseUrl}/1/cards?idList=${id_List}&key=${Authorization.ACESS_API_KEY}&token=${Authorization.ACESS_TOKEN}`,
             body: {
                 name: `${nomeCard}`,
             }
@@ -42,13 +41,14 @@ describe('Testes Automatizados Api Trello', () => {
             expect(response.body).to.have.property('id')
             cy.screenshot('[POST] Cadastrar um card')
             cy.log(`O nome do Card criado é ${nomeCard}`)
+            
         })
     });
 
     it('[DELETE] Excluir card', () => {
         cy.api({
             method: 'DELETE',
-            url: `${url}/1/cards/${id_ExcluirCard}?key=${apiKey}&token=${apiToken}`,
+            url: `${Api_url.baseUrl}/1/cards/${id_ExcluirCard}?key=${Authorization.ACESS_API_KEY}&token=${Authorization.ACESS_TOKEN}`,
         }).then((response) => {
             expect(response.status).to.be.equal(200)
             expect(response.headers).to.have.property('content-type', 'application/json; charset=utf-8')
@@ -61,7 +61,7 @@ describe('Testes Automatizados Api Trello', () => {
     it('[DELETE] Excluir board', () => {
         cy.api({
             method: 'DELETE',
-            url: `${url}/1/boards/${id_ExcluirBoard}?key=${apiKey}&token=${apiToken}`,
+            url: `${Api_url.baseUrl}/1/boards/${id_ExcluirBoard}?key=${Authorization.ACESS_API_KEY}&token=${Authorization.ACESS_TOKEN}`,
             headers: { 'Accept-Language': 'en-us', },
         }).then((response) => {
             expect(response.status).to.be.equal(200)

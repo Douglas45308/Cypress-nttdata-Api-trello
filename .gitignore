@@ -17,3 +17,4 @@ cypress/fixtures/
 *.log
 
 #credencias 
+Api-Trello-NttData\cypress.env.example.json

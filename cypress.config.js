@@ -21,6 +21,7 @@ module.exports = defineConfig({
 
   e2e: {
     setupNodeEvents(on, config) {
+      
       ///<reference types="cypress" />
     },
   }

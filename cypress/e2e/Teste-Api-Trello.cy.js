@@ -3,14 +3,18 @@ describe('Testes Automatizados Api Trello', () => {
 
     const apiKey = '5004433386400af25cff42a899de721b';
     const apiToken = 'ATTA716fa4d158439af4bf942ac77f871e7fcf4289a4d8e2548e52776a45d9d81f13A60291B7';
-    const nomeBoard = 'Souza'
-    const url = 'https://api.trello.com/1/boards/?name='
+    const nomeBoard = 'Souza' // Inserir nome do Board
+    //const url = 'https://api.trello.com/1/boards/?name='
+    const url = 'https://api.trello.com'
+    var id_List = '64a3086dfb5efaf2ac66eb27'
+    var id_ExcluirCard = 'JtuhCHrV'
+    var id_ExcluirBoard = 'Bn3zufzs'
     
 
     it('[POST] Cadastrar um board', () => {
         cy.request({
             method: 'POST',
-            url: `${url}${nomeBoard}&key=${apiKey}&token=${apiToken}`
+            url: `${url}/1/boards/?name=${nomeBoard}&key=${apiKey}&token=${apiToken}`
             //headers: { 'Accept': 'aplication/json' },
         }).then((response) => {
             expect(response.status).to.be.equal(200)
@@ -20,12 +24,13 @@ describe('Testes Automatizados Api Trello', () => {
         })
     });
 
-    it.only('[POST] Cadastrar um card', () => {
+    it('[POST] Cadastrar um card', () => {
+        
         cy.request({
-            method: 'POST',
-            url: `https://api.trello.com/1/cards?idList=64a3086dfb5efaf2ac66eb27&key=${apiKey}&token=${apiToken}`,
+            method: 'POST',    
+            url: `${url}/1/cards?idList=${id_List}&key=${apiKey}&token=${apiToken}`,
             body: {
-                name: 'homem formiga'
+                name: 'O Corvo'
             }
 
         }).then((response) => {
@@ -36,7 +41,7 @@ describe('Testes Automatizados Api Trello', () => {
     it('[DELETE] Excluir card', () => {
         cy.request({
             method: 'DELETE',
-            url: 'https://api.trello.com/1/cards/NLX7ynzQ?key=5004433386400af25cff42a899de721b&token=ATTA716fa4d158439af4bf942ac77f871e7fcf4289a4d8e2548e52776a45d9d81f13A60291B7',
+            url: `${url}/1/cards/${id_ExcluirCard}?key=${apiKey}&token=${apiToken}`,
             //headers: { 'Accept-Language': 'en-us', },
         }).then((response) => {
             expect(response.status).to.be.equal(200)
@@ -44,10 +49,10 @@ describe('Testes Automatizados Api Trello', () => {
 
     });
 
-    it('[DELETE] Excluir board', () => {
+    it.only('[DELETE] Excluir board', () => {
         cy.request({
             method: 'DELETE',
-            url: 'https://api.trello.com/1/boards/Mnyjctbn?key=5004433386400af25cff42a899de721b&token=ATTA716fa4d158439af4bf942ac77f871e7fcf4289a4d8e2548e52776a45d9d81f13A60291B7',
+            url: `${url}/1/boards/${id_ExcluirBoard}?key=${apiKey}&token=${apiToken}`,
             headers: { 'Accept-Language': 'en-us', },
         }).then((response) => {
             expect(response.status).to.be.equal(200)

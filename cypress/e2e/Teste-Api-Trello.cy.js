@@ -3,7 +3,7 @@ describe('Testes Automatizados Api Trello', () => {
 
     const apiKey = '5004433386400af25cff42a899de721b';
     const apiToken = 'ATTA716fa4d158439af4bf942ac77f871e7fcf4289a4d8e2548e52776a45d9d81f13A60291B7';
-    const nomeBoard = 'Japao' // Inserir nome do Board
+    var nomeBoard = 'Japao' // Inserir nome do Board
     //const url = 'https://api.trello.com/1/boards/?name='
     const url = 'https://api.trello.com'
     var id_List = '64a3086dfb5efaf2ac66eb27'

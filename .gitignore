@@ -17,4 +17,4 @@ cypress/fixtures/
 *.log
 
 #credencias 
-cypress.env.example.json
+/cypress.env.example.json

@@ -1,7 +1,7 @@
 # Arquivos de configuração
 cypress.json
 cypress.env.json
-cypress.env.example.json
+*cypress.env.example.json
 
 # Relatórios
 cypress/report/

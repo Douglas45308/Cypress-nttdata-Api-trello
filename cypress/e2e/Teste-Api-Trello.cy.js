@@ -2,13 +2,14 @@ import Authorization from '../../cypress.env.example.json'
 import Api_url from '../../env.json'
 
 describe('Testes Automatizados Api Trello', () => {
-    var nomeBoard = 'A' 
-    var nomeCard = 'Teste-variavel'
-    var id_List = '64a3086dfb5efaf2ac66eb27'
-    var id_ExcluirCard = 'WJqQIYcu'
-    var id_ExcluirBoard = 'Bn3zufzs'
+    var nomeBoard = 'Teste' 
+    var nomeCard = 'Trello Ntt Data'
+    var id_List = '64a55f4b946435ab59de315e'
+    var id_ExcluirBoard = 'qPRSTDju'
+    var id_ExcluirCard = 'QPBvzOzk'
+   
     
-    it.only('[POST] Criar board', () => {
+    it('[POST] Criar board', () => {
         cy.api({
             method: 'POST',
             url: `${Api_url.baseUrl}/1/boards/?name=${nomeBoard}&key=${Authorization.ACESS_API_KEY}&token=${Authorization.ACESS_TOKEN}`,
@@ -21,11 +22,11 @@ describe('Testes Automatizados Api Trello', () => {
             const listIdFromResponse = response.body.id;
             cy.log('ID board:', listIdFromResponse);
             cy.log(`Nome do board criado é ${nomeBoard}`)
-            cy.screenshot('[POST] Cadastrar um board')
+            cy.screenshot('[POST] Criar board')
         })
     });
 
-    it('[POST] Cadastrar um card', () => {
+    it('[POST] Cadastrar Card', () => {
         
         cy.api({
             method: 'POST',    
@@ -39,33 +40,36 @@ describe('Testes Automatizados Api Trello', () => {
             expect(response.headers).to.have.property('content-type', 'application/json; charset=utf-8')
             expect(response.body).to.have.property('limits')
             expect(response.body).to.have.property('id')
-            cy.screenshot('[POST] Cadastrar um card')
+            cy.screenshot('[POST] Cadastrar Card')
             cy.log(`O nome do Card criado é ${nomeCard}`)
             
         })
     });
 
-    it('[DELETE] Excluir card', () => {
+    it.only('[DELETE] Excluir Card', () => {
         cy.api({
             method: 'DELETE',
             url: `${Api_url.baseUrl}/1/cards/${id_ExcluirCard}?key=${Authorization.ACESS_API_KEY}&token=${Authorization.ACESS_TOKEN}`,
         }).then((response) => {
             expect(response.status).to.be.equal(200)
             expect(response.headers).to.have.property('content-type', 'application/json; charset=utf-8')
+            expect(response.headers).to.have.property('date')
             expect(response.body).to.have.property('limits')
             cy.screenshot('[DELETE] Excluir card')
         })
 
     });
 
-    it('[DELETE] Excluir board', () => {
+    it('[DELETE] Excluir Board', () => {
         cy.api({
             method: 'DELETE',
             url: `${Api_url.baseUrl}/1/boards/${id_ExcluirBoard}?key=${Authorization.ACESS_API_KEY}&token=${Authorization.ACESS_TOKEN}`,
-            headers: { 'Accept-Language': 'en-us', },
         }).then((response) => {
             expect(response.status).to.be.equal(200)
-            cy.screenshot('[DELETE] Excluir board')
+            expect(response.headers).to.have.property('content-type', 'application/json; charset=utf-8')
+            expect(response.headers).to.have.property('date')
+            cy.screenshot('[DELETE] Excluir Board')
+            
         })
 
     });

@@ -6,17 +6,15 @@ https://developer.atlassian.com/cloud/trello/rest/api-group-boards/#api-boards-i
 */
 
 describe('Testes Automatizados Api Trello', () => {
+    
     //variaveis
     var nomeBoard = 'Teste'
     var nomeCard = 'Automação API do Trello com Cypress'
     var id_List = '64a55f4b946435ab59de315e'
-    var id_ExcluirCard = 'LGC0NWWo'
-    var id_ExcluirBoard = 'qPRSTDju'
+    var id_ExcluirCard = 'NUldYXwp'
+    var id_ExcluidBoard = 'G2Zm1Z1H'
 
-
-
-
-    it.only('[POST] Criar board', () => {
+    it('[POST] Criar board', () => {
         cy.api({
             method: 'POST',
             url: `${Api_url.baseUrl}/1/boards/?name=${nomeBoard}&key=${Authorization.ACESS_API_KEY}&token=${Authorization.ACESS_TOKEN}`,
@@ -53,11 +51,10 @@ describe('Testes Automatizados Api Trello', () => {
         })
     });
 
-    it.only('[DELETE] Excluir Card', () => {
+    it('[DELETE] Excluir Card', () => {
         cy.api({
             method: 'DELETE',
-            url: `${Api_url.baseUrl}/1/cards/${excluirCard.removerCard}?key=${Authorization.ACESS_API_KEY}&token=${Authorization.ACESS_TOKEN}`,
-            //url: `${Api_url.baseUrl}/1/cards/${id_ExcluirCard}?key=${Authorization.ACESS_API_KEY}&token=${Authorization.ACESS_TOKEN}`,
+            url: `${Api_url.baseUrl}/1/cards/${id_ExcluirCard}?key=${Authorization.ACESS_API_KEY}&token=${Authorization.ACESS_TOKEN}`,
         }).then((response) => {
             expect(response.status).to.be.equal(200)
             expect(response.headers).to.have.property('content-type', 'application/json; charset=utf-8')
@@ -67,18 +64,13 @@ describe('Testes Automatizados Api Trello', () => {
         })
 
     });
-   
-});
 
 
-
-
-
-it('[DELETE] Excluir Board', () => {
-    cy.api({
+    it.only('[DELETE] Excluir Board', () => {
+        cy.api({
         method: 'DELETE',
-        url: `${Api_url.baseUrl}/1/boards/${id_ExcluirBoard}?key=${Authorization.ACESS_API_KEY}&token=${Authorization.ACESS_TOKEN}`,
-    }).then((response) => {
+        url: `${Api_url.baseUrl}/1/boards/${id_ExcluidBoard}?key=${Authorization.ACESS_API_KEY}&token=${Authorization.ACESS_TOKEN}`,
+        }).then((response) => {
         expect(response.status).to.be.equal(200)
         expect(response.headers).to.have.property('content-type', 'application/json; charset=utf-8')
         expect(response.headers).to.have.property('date')
@@ -86,7 +78,7 @@ it('[DELETE] Excluir Board', () => {
 
     })
 
-});
+})
 
 
-
+})

@@ -19,3 +19,6 @@ Via terminal, execute o comando "npx cypress open" para abrir a interface do Cyp
 # Informações Importantes:
 
 Crie suas credencias (ApiKey e Token) no Trello e insira ambas no arquivo: [cypress.env.example.json]
+
+# Mapa mental
+Acesse o miro: https://miro.com/app/board/uXjVM4JU7uI=/?moveToWidget=3458764558919433842&cot=14 (acesso requerido)

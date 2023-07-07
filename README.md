@@ -22,3 +22,4 @@ Crie suas credencias (ApiKey e Token) no Trello e insira ambas no arquivo: [cypr
 
 # Mapa mental
 Acesse o miro: https://miro.com/app/board/uXjVM4JU7uI=/?moveToWidget=3458764558919433842&cot=14 (acesso requerido)
+![image](https://github.com/Douglas45308/Cypress-nttdata-Api-trello/assets/32233338/3dd4eb9a-1e5c-4339-a58d-c7476f824c28)

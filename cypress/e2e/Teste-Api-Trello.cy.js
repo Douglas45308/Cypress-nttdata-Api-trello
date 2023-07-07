@@ -9,7 +9,7 @@ describe('Testes Automatizados Api Trello', () => {
     
     //variaveis
     var nomeBoard = 'Teste'
-    var nomeCard = 'Automação API do Trello com Cypress'
+    var nomeCard = 'Card - Automação de API do Trello com Cypress'
     var id_List = '64a55f4b946435ab59de315e'
     var id_ExcluirCard = 'NUldYXwp'
     var id_ExcluidBoard = 'G2Zm1Z1H'
